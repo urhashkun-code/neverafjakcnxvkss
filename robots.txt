@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hashersync.in/sitemap.xml
+
+# Block unnecessary files
+Disallow: /*.py$
+Disallow: /*.json$
