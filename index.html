@@ -2168,57 +2168,7 @@ section.grid-bg::before {
   img { max-width: 100%; height: auto; }
   .hero, .section { content-visibility: auto; contain-intrinsic-size: 900px; }
 
-    /* ── Fix mobile wobble ── */
-html, body {
-  width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-}
 
-* {
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Lock viewport width */
-@viewport {
-  width: device-width;
-}
-@-ms-viewport {
-  width: device-width;
-}
-
-/* iOS Safari fixed navbar wobble */
-@supports (-webkit-touch-callout: none) {
-  body {
-    padding-right: env(safe-area-inset-right);
-    padding-left: env(safe-area-inset-left);
-  }
-  
-  .navbar {
-    left: 0 !important;
-    right: 0 !important;
-    transform: none !important;
-    margin: 0 env(safe-area-inset-left) 0 env(safe-area-inset-right) !important;
-    width: auto !important;
-  }
-}
-
-/* Prevent 320px overflow (your min target) */
-@media (max-width: 320px) {
-  .container, .section, main {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  
-  img, video {
-    max-width: 100vw !important;
-    height: auto !important;
-  }
-}
     
 </style>
 
