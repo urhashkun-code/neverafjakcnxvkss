@@ -1794,6 +1794,47 @@
       .btn { font-size: .8rem !important; padding: .6rem 1rem !important; }
       .ftab { font-size: .62rem !important; padding: .35rem .7rem !important; }
     }
+    @media (max-width: 768px) {
+  .cursor,
+  .page-loader::before,
+  body::after,
+  .loader-glow,
+  .noise,
+  .grid-bg,
+  .dot-bg {
+    display: none !important;
+  }
+
+  .glass,
+  .glass-strong,
+  .nav-inner {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .navbar {
+    top: 0.75rem;
+    width: calc(100% - 1rem);
+  }
+
+  .section,
+  .hero,
+  .cta,
+  .footer {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+    
   </style>
 </head>
 
