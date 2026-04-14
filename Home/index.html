@@ -3663,4 +3663,33 @@ document.addEventListener('keydown', function (e) {
     }
   })();
   </script>
-<scri
+<script>
+// Fix mm-nav links: Close menu + navigate
+document.querySelectorAll('.mm-nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();  // Keep for smooth UX
+    const href = this.getAttribute('href');
+    
+    // Close menu first
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, 0);  // Smooth scroll home
+    
+    // Navigate after close animation
+    setTimeout(() => {
+      if (href === '#') window.scrollTo(0, 0);
+      else if (href.startsWith('#')) {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = href;
+      }
+    }, 300);
+  });
+});
+</script>
+</body>
+
+</html>
