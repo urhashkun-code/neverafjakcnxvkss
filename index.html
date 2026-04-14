@@ -886,52 +886,86 @@
       width: 14px;
     }
 
-    /* ── Mobile menu ── */
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 800;
-      padding: 1.5rem 2rem;
-      display: none;
-      flex-direction: column;
-      gap: 0;
-    }
+   /* ── Mobile menu ── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 800;
+  padding: 1.5rem 2rem;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  transform: translateX(100%); /* Start off-screen */
+  transition: transform 0.3s ease-in-out; /* Smooth slide */
+}
 
-    .mobile-menu.open {
-      display: flex;
-    }
+.mobile-menu.open {
+  display: flex;
+  transform: translateX(0); /* Slide in */
+}
 
-    .mm-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
+.mm-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
 
-    .mm-close {
-      background: none;
-      border: none;
-      color: var(--txt);
-      font-size: 1.5rem;
-    }
+.mm-close {
+  background: none;
+  border: none;
+  color: var(--txt);
+  font-size: 1.5rem;
+  cursor: pointer; /* Ensure clickable cursor */
+  padding: 0.5rem; /* Larger touch target */
+  line-height: 1; /* Prevent extra spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px; /* iOS recommended touch target */
+  min-height: 44px;
+}
 
-    .mm-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      flex: 1;
-    }
+.mm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
 
-    .mm-nav a {
-      font-size: 1.875rem;
-      font-weight: 800;
-    }
+.mm-nav a {
+  font-size: 1.875rem;
+  font-weight: 800;
+  display: block; /* Full touch area */
+  padding: 1rem 0; /* Touch-friendly */
+  text-decoration: none;
+}
 
-    .mm-cta {
-      margin-top: 2rem;
-      justify-content: center;
-    }
+.mm-cta {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+/* Responsive: Show/hide menu trigger & ensure mobile styles */
+@media (max-width: 1024px) {
+  /* Hide desktop nav, show hamburger (add your hamburger styles if missing) */
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block; /* Your hamburger button */
+  }
+}
+
+/* Ensure fixed works on mobile - viewport meta already needed: <meta name="viewport" content="width=device-width, initial-scale=1"> */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-menu {
+    /* Extra mobile safeguards */
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
     /* ── Hero circles ── */
     .hcw {
@@ -3369,9 +3403,48 @@ We design and build websites that are fast, purposeful, and easy to hand off. An
       document.addEventListener('touchstart', show, { passive: true });
     })();
 
-    // ── 6. Mobile menu ──
-    document.getElementById('menuBtn').addEventListener('click', function () { document.getElementById('mobileMenu').classList.add('open'); });
-    document.getElementById('closeMenu').addEventListener('click', function () { document.getElementById('mobileMenu').classList.remove('open'); });
+   javascript
+// ── 6. Mobile menu (improved) ──
+// Open menu + lock body scroll
+document.getElementById('menuBtn').addEventListener('click', function (e) {
+  e.preventDefault(); // Prevent any link jump
+  document.getElementById('mobileMenu').classList.add('open');
+  document.body.style.overflow = 'hidden'; // Lock scroll
+  document.body.style.position = 'fixed'; // Prevent iOS bounce
+  document.body.style.width = '100%'; // Prevent width shift
+});
+
+// Close menu + unlock body scroll
+document.getElementById('closeMenu').addEventListener('click', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
+});
+
+// Close on nav link clicks (UX best practice)
+document.querySelectorAll('#mobileMenu .mm-nav a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault(); // If links are anchors
+    document.getElementById('closeMenu').click(); // Reuse close handler
+  });
+});
+
+// Close on outside click / overlay (optional premium UX)
+document.getElementById('mobileMenu').addEventListener('click', function (e) {
+  if (e.target === this) { // Clicked the backdrop
+    document.getElementById('closeMenu').click();
+  }
+});
+
+// ESC key close (accessibility)
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
+    document.getElementById('closeMenu').click();
+  }
+});
 
     // ── 7. CSS-based scroll reveal (IntersectionObserver — no GSAP needed) ──
     (function () {
