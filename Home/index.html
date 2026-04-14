@@ -58,33 +58,7 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script>
-// Fix mm-nav links: Close menu + navigate
-document.querySelectorAll('.mm-nav a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();  // Keep for smooth UX
-    const href = this.getAttribute('href');
-    
-    // Close menu first
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    window.scrollTo(0, 0);  // Smooth scroll home
-    
-    // Navigate after close animation
-    setTimeout(() => {
-      if (href === '#') window.scrollTo(0, 0);
-      else if (href.startsWith('#')) {
-        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.location.href = href;
-      }
-    }, 300);
-  });
-});
-</script>
+ 
   <!-- ── Schema.org structured data ── -->
   <script type="application/ld+json">
 {
@@ -3443,7 +3417,31 @@ We design and build websites that are fast, purposeful, and easy to hand off. An
       </div>
     </div>
   </footer>
-
+<script>
+// Instant mm-nav: Close + navigate (no delay)
+document.querySelectorAll('.mm-nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    
+    // Instant close + unlock scroll
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    
+    // Instant navigate
+    if (href === '#') window.scrollTo({ top: 0, behavior: 'instant' });
+    else if (href.startsWith('#')) {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = href;
+    }
+  });
+});
+</script>
   
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   
