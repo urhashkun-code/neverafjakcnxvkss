@@ -2871,12 +2871,23 @@
 }
 </style>
    </style>
+
+  
   <style id="hs-site-polish">
   :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   a, button { -webkit-tap-highlight-color: transparent; }
   img { max-width: 100%; height: auto; }
   .hero, .section { content-visibility: auto; contain-intrinsic-size: 900px; }
-
+ html { scroll-behavior: smooth; }
+  body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+  img, video, iframe { max-width: 100%; height: auto; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  .hero, .section, .footer, .faq-item, .service-card, .case-card, .pricing-card { content-visibility: auto; contain-intrinsic-size: 800px; }
+ 
+  .theme-toggle, .hamburger, .social-btn { min-width: 12px; min-height: 12px; }
+  .mobile-menu { display: none !important; }
+  @media (max-width: 767px) { .nav-links, #desktopNav, .nav-cta { display: none !important; } .mobile-menu.open { display: flex !important; } }
+    
 </style>
 </head>
 
