@@ -1844,9 +1844,12 @@
   body::after,
   .loader-glow,
   .noise,
-  .grid-bg,
   .dot-bg {
     display: none !important;
+  }
+  
+  .grid-bg {
+    background-image: none !important;
   }
 
   .glass,
@@ -1878,7 +1881,11 @@
     height: auto;
   }
 }
-    
+    .hero-seq {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: hero-in 0.75s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
   </style>
 </head>
 
