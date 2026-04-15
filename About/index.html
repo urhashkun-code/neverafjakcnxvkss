@@ -2918,7 +2918,36 @@
   .theme-toggle, .hamburger, .social-btn { min-width: 12px; min-height: 12px; }
   .mobile-menu { display: none !important; }
   @media (max-width: 767px) { .nav-links, #desktopNav, .nav-cta { display: none !important; } .mobile-menu.open { display: flex !important; } }
-    
+
+    /* ULTIMATE MOBILE HERO FIX - Targets main/content + forces visibility */
+@media screen and (max-width: 768px) {
+  /* Target possible hero selectors */
+  main, main > *:first-child, [class*="hero"], [id*="hero"], 
+  section:first-of-type, .hero-section, article:first-child {
+    display: block !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    padding: 7rem 1.5rem 4rem !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    overflow: visible !important;
+    background: var(--bg) !important;
+  }
+  
+  /* Force ALL hero-like content visible */
+  h1, h2, .hero-h1, [class*="hero-"], .lbl {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+    color: var(--txt) !important;
+  }
+  
+  /* Navbar stays above */
+  .navbar { z-index: 999 !important; }
+}
 </style>
 </head>
 
