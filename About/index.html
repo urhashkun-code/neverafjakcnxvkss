@@ -2468,6 +2468,17 @@
       #hero-content {
         max-width: 100%;
       }
+      #hero-h1 {
+        letter-spacing: -.03em !important;
+        margin-bottom: 1.25rem !important;
+      }
+      #hero-sub {
+        background: linear-gradient(180deg, rgba(255,255,255,.05), transparent) !important;
+        padding: 1.25rem !important;
+        border-left: 2px solid var(--accent) !important;
+        border-radius: 4px !important;
+        margin-bottom: 2rem !important;
+      }
       #hero-stats {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -2579,11 +2590,16 @@
         font-size: clamp(2rem, 9vw, 2.8rem) !important;
         max-width: 100% !important;
         margin-bottom: 1rem !important;
+        letter-spacing: -.025em !important;
       }
       #hero-sub {
         font-size: .95rem !important;
         max-width: 100% !important;
         margin-bottom: 1.75rem !important;
+        background: linear-gradient(180deg, rgba(255,255,255,.05), transparent) !important;
+        padding: 1.25rem !important;
+        border-left: 2px solid var(--accent) !important;
+        border-radius: 4px !important;
       }
       #hero-btns {
         flex-direction: column !important;
@@ -2835,9 +2851,12 @@
   body::after,
   .loader-glow,
   .noise,
-  .grid-bg,
   .dot-bg {
     display: none !important;
+  }
+  
+  .grid-bg {
+    background-image: none !important;
   }
 
   .glass,
@@ -3020,17 +3039,21 @@
     
     <div style="max-width:1240px;margin:0 auto;position:relative;z-index:1;">
       <div id="hero-content">
-        <p class="lbl gsap-fade-up" id="hero-lbl">About Us</p>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <p class="lbl gsap-fade-up" id="hero-lbl">About Us</p>
+          <div style="width:24px;height:24px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.05));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--accent);">★</div>
+        </div>
         <h1 id="hero-h1"
           style="font-size:clamp(2.8rem,7.5vw,5.5rem);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin-bottom:1.5rem;max-width:700px;">
-          Built on craft.<br><span class="tg">Driven by results.</span>
+          Built on <span style="background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));padding:0.125em 0.25em;border-radius:4px;">craft</span>.<br><span class="tg">Driven by results.</span>
         </h1>
+        <div style="width:3rem;height:3px;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:1.75rem;border-radius:2px;"></div>
         <p id="hero-sub"
           style="font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:2.5rem;">
-          A tight-knit team of designers, developers, and marketing strategists who believe great digital work should be
-          both beautiful and effective.
+          A tight-knit team of <span style="color:var(--txt);font-weight:600;">designers, developers</span>, and <span style="color:var(--txt);font-weight:600;">marketing strategists</span> who believe great digital work should be both beautiful and effective.
         </p>
-        <div id="hero-btns" style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div id="hero-btns" style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;">
+          <div style="position:absolute;top:-1.5rem;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);border-radius:50%;pointer-events:none;opacity:0.6;"></div>
           <a href="/Contact/" class="btn btn-white mag-btn">Work With Us <svg width="14" height="14"
               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
