@@ -2801,6 +2801,55 @@
         gsap.fromTo(el, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: .7, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
       });
     });
+
+       // ── 6. Mobile menu (improved) ──
+var _mmScrollY = 0;
+
+// Open menu + lock body scroll (no wobble)
+document.getElementById('menuBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  _mmScrollY = window.scrollY;
+  document.getElementById('mobileMenu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _mmScrollY + 'px';
+  document.body.style.width = '100%';
+});
+
+// Close menu + unlock body scroll (restore position)
+document.getElementById('closeMenu').addEventListener('click', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, _mmScrollY);
+});
+
+// Close on nav link clicks (UX best practice)
+document.querySelectorAll('#mobileMenu .mm-nav a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault(); // If links are anchors
+    document.getElementById('closeMenu').click(); // Reuse close handler
+  });
+});
+
+// Close on outside click / overlay (optional premium UX)
+document.getElementById('mobileMenu').addEventListener('click', function (e) {
+  if (e.target === this) { // Clicked the backdrop
+    document.getElementById('closeMenu').click();
+  }
+});
+
+// ESC key close (accessibility)
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
+    document.getElementById('closeMenu').click();
+  }
+});
+    
   </script>
 </body>
 
