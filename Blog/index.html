@@ -2878,6 +2878,61 @@ document.getElementById('closeMenu').addEventListener('click', function(e) {
   window.scrollTo(0, mmScrollY || 0);
 });
 </script>
+  <script>
+// 1. Hamburger OPEN - Lock scroll (overlay mode)
+let mmScrollY = 0;
+document.getElementById('menuBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  mmScrollY = window.scrollY;
+  document.getElementById('mobileMenu').classList.add('open');
+  // CRITICAL: Body lock
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${mmScrollY}px`;
+  document.body.style.width = '100%';
+});
+
+// 2. Close X - Unlock scroll
+document.getElementById('closeMenu').addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, mmScrollY || 0);
+});
+
+// 3. Nav links - Close + navigate (instant)
+document.querySelectorAll('.mm-nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    // Close + unlock
+    document.getElementById('closeMenu').click();
+    // Navigate
+    if (href === '#') window.scrollTo({ top: 0, behavior: 'instant' });
+    else if (href.startsWith('#')) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    else window.location.href = href;
+  });
+});
+
+// 4. Backdrop click (premium UX)
+document.getElementById('mobileMenu').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('mobileMenu')) {
+    document.getElementById('closeMenu').click();
+  }
+});
+
+// 5. ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
+    document.getElementById('closeMenu').click();
+  }
+});
+</script>
+  
 </body>
 
 </html>
