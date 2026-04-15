@@ -1145,53 +1145,95 @@
       transition: .3s;
     }
 
-    /* ── Mobile menu ── */
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 800;
-      padding: 1.5rem 2rem;
-      display: none;
-      flex-direction: column;
-      gap: 0;
-    }
+ /* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: var(--bg);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.75rem 2.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity .28s ease, transform .28s cubic-bezier(.2,0,.2,1), visibility .28s;
+  will-change: opacity, transform;
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+  transform: translateY(0);
+}
+.mm-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-top: 0.25rem;
+}
+.mm-close {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: var(--txt);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s;
+  margin-left: auto;
+}
+.mm-close:hover {
+  background: rgba(255,255,255,0.22);
+}
+.mm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+.mm-nav a {
+  font-size: 1.875rem;
+  font-weight: 800;
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+.mm-cta {
+  margin-top: 2rem;
+  justify-content: center;
+}
+.mm-link {
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mm-link:hover, .mm-link.active {
+  color: var(--accent) !important;
+}
 
-    .mobile-menu.open {
-      display: flex;
-    }
-
-    .mm-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
-
-    .mm-close {
-      background: none;
-      border: none;
-      color: var(--txt);
-      font-size: 1.5rem;
-    }
-
-    .mm-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      flex: 1;
-    }
-
-    .mm-nav a {
-      font-size: 1.875rem;
-      font-weight: 800;
-    }
-
-    .mm-cta {
-      margin-top: 2rem;
-      justify-content: center;
-    }
-
+/* Mobile Media Queries */
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none !important; }
+  .hamburger { display: flex !important; }
+}
+@media (min-width: 769px) {
+  .mobile-menu { display: none !important; }
+}
 
     /* ── Hero Orbiting Circles ── */
     .horbit-wrap {
