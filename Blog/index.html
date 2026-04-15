@@ -807,53 +807,80 @@
       border-radius: 1px;
       transition: .3s;
     }
+/* ── Close button: centred X, proper size ── */
+.mm-close {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: var(--txt);
+  font-size: 1.5rem;   /* sized to fit the 44×44 button */
+  font-weight: 700;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s;
+  margin-left: auto;   /* push to right side */
+}
 
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 800;
-      padding: 1.5rem 2rem;
-      display: none;
-      flex-direction: column;
-      gap: 0;
-    }
+.mm-close:hover { background: rgba(255,255,255,0.22); }
 
-    .mobile-menu.open {
-      display: flex;
-    }
+[data-theme="light"] .mm-close { background: rgba(0,0,0,0.08); color: #111; }
+[data-theme="light"] .mm-close:hover { background: rgba(0,0,0,0.15); }
 
-    .mm-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
+.mm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
 
-    .mm-close {
-      background: none;
-      border: none;
-      color: var(--txt);
-      font-size: 1.5rem;
-    }
+.mm-nav a {
+  font-size: 1.875rem;
+  font-weight: 800;
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+}
 
-    .mm-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      flex: 1;
-    }
+.mm-cta { margin-top: 2rem; justify-content: center; }
 
-    .mm-nav a {
-      font-size: 1.875rem;
-      font-weight: 800;
-    }
+.mm-link {
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 
-    .mm-cta {
-      margin-top: 2rem;
-      justify-content: center;
-    }
+.mm-link:hover,
+.mm-link:active { color: var(--accent) !important; }
+   .mm-top {
+  padding-top: 0.75rem !important;
+  margin-bottom: 1rem !important;
+  align-items: center !important;
+}
 
+#closeMenu,
+.mm-close {
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 1.6rem !important;
+  margin-left: auto !important;
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  transform: translateY(1px) !important;
+}
     .hcw {
       position: absolute;
       inset: 0;
