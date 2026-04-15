@@ -3972,6 +3972,25 @@
         });
       });
     });
+    // Mobile menu toggle
+var mmScrollY = 0;
+document.getElementById('menuBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  mmScrollY = window.scrollY;
+  document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'true');
+  // ... focus management, body scroll lock
+});
+
+// Close menu
+document.getElementById('closeMenu').addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  // ... restore scroll
+});
+
   </script>
 </body>
 
