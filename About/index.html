@@ -14,9 +14,7 @@
   <meta name="author" content="Hasher Sync" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://hashersync.in/about.html" />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- ── Open Graph / Facebook ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Hasher Sync" />
   <meta property="og:title" content="About Hasher Sync | Crafting Digital Excellence" />
@@ -437,73 +435,7 @@
     [data-theme="light"] .cursor.big {
       border-color: rgba(0, 0, 0, .25);
     }
-/* STRONGER LIGHT MODE HERO VISUALS */
-[data-theme="light"] .hero::before {
-  opacity: 1;
-}
 
-[data-theme="light"] .hero::after {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.075) 1px, transparent 1px);
-}
-
-[data-theme="light"] .hero-spotlight {
-  background: radial-gradient(
-    600px circle at var(--mx, 50%) var(--my, 30%),
-    rgba(0, 0, 0, 0.085) 0,
-    transparent 60%
-  );
-}
-
-[data-theme="light"] .hero-canvas {
-  opacity: 1;
-}
-
-[data-theme="light"] .hblob,
-[data-theme="light"] .hblob-lg {
-  filter: blur(72px);
-  opacity: 1 !important;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.11) 0, transparent 62%) !important;
-}
-
-[data-theme="light"] .hring {
-  border-color: rgba(0, 0, 0, 0.18) !important;
-  border-width: 1px;
-}
-
-[data-theme="light"] .hring.dash {
-  border-color: rgba(0, 0, 0, 0.14) !important;
-}
-
-[data-theme="light"] .horbit {
-  border-color: rgba(0, 0, 0, 0.18) !important;
-}
-
-[data-theme="light"] .horbit.dashed,
-[data-theme="light"] .horbit-3 {
-  border-color: rgba(0, 0, 0, 0.14) !important;
-}
-
-[data-theme="light"] .horbit::before {
-  background: rgba(0, 0, 0, 0.88) !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.32) !important;
-}
-
-[data-theme="light"] .horbit-center {
-  background: rgba(0, 0, 0, 0.24) !important;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.16) !important;
-}
-
-[data-theme="light"] .hdot {
-  background: rgba(0, 0, 0, 0.6) !important;
-}
-
-[data-theme="light"] .harc circle {
-  stroke: rgba(0, 0, 0, 0.4) !important;
-  stroke-width: 1.4px;
-}
-    
     /* Light mode adjustments for hero background & orbits */
     [data-theme="light"] #hero::before {
       opacity: 0.8;
@@ -1344,8 +1276,8 @@
     }
 
     .horbit-1 {
-      width: 320px;
-      height: 320px;
+      width: clamp(160px, 33vw, 320px);
+      height: clamp(160px, 33vw, 320px);
       animation-duration: 18s;
     }
 
@@ -1356,8 +1288,8 @@
     }
 
     .horbit-2 {
-      width: 500px;
-      height: 500px;
+      width: clamp(260px, 52vw, 500px);
+      height: clamp(260px, 52vw, 500px);
       animation-duration: 28s;
       border-color: rgba(255, 255, 255, 0.05);
     }
@@ -1369,8 +1301,8 @@
     }
 
     .horbit-3 {
-      width: 680px;
-      height: 680px;
+      width: clamp(340px, 70vw, 680px);
+      height: clamp(340px, 70vw, 680px);
       animation-duration: 40s;
       border-style: dashed;
       border-color: rgba(255, 255, 255, 0.04);
@@ -1383,8 +1315,8 @@
     }
 
     .horbit-4 {
-      width: 200px;
-      height: 200px;
+      width: clamp(100px, 20vw, 200px);
+      height: clamp(100px, 20vw, 200px);
       animation-duration: 12s;
       border-color: rgba(255, 255, 255, 0.07);
       animation-direction: reverse;
@@ -1749,11 +1681,13 @@
     }
 
     /* ── Cookie ── */
-    
-
-    
-
-    [data-theme="light"] 
+    #cookieBanner {
+      position: fixed;
+      left: 1.5rem;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 9000;
+    }
 
     /* ═══════════════════════════════════════════════
        OUR STORY SECTION
@@ -2556,10 +2490,6 @@
         gap: 1.25rem !important;
         margin-top: 3rem !important;
       }
-      #hero-stats > div[style*="width:1px"],
-      #hero-stats > div[style*="width: 1px"] {
-        display: none !important;
-      }
       .stat-num {
         font-size: 1.75rem;
       }
@@ -2688,10 +2618,6 @@
         grid-template-columns: 1fr 1fr !important;
         gap: 1rem !important;
         margin-top: 2.5rem !important;
-      }
-      #hero-stats > div[style*="width:1px"],
-      #hero-stats > div[style*="width: 1px"] {
-        display: none !important;
       }
       .stat-num {
         font-size: 1.5rem;
@@ -2845,33 +2771,29 @@
 
     /* Make hero fill viewport properly */
     #hero {
-      min-height: 100vh;
-      min-height: 100dvh; /* dynamic viewport height */
-      padding-top: max(9rem, 12vh);
-      padding-bottom: max(6rem, 15vh);
+      min-height: 100svh;
+      padding-top: clamp(6rem, 14vh, 11rem);
+      padding-bottom: clamp(4rem, 10vh, 8rem);
     }
 
     /* Hero content vertical centering */
     #hero > div[style*="max-width:1240px"] {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      min-height: 100vh;
-      min-height: 100dvh;
+      justify-content: flex-start;
+      min-height: unset;
     }
 
     /* Hero stats always at bottom of viewport */
     #hero-stats {
-      position: sticky;
-      bottom: max(3rem, 6vh);
-      margin-top: auto;
+      position: relative;
+      margin-top: 4rem;
       margin-bottom: 0 !important;
     }
 
     /* Sections fit content + breathing room */
     .section {
-      min-height: 100vh;
-      min-height: 100dvh;
+      min-height: unset;
     }
 
     /* Navbar perfect positioning */
@@ -2898,83 +2820,201 @@
       margin-bottom: clamp(1rem, 3vh, 2rem);
     }
 
-  
-/* Enhanced responsiveness */
-@media (max-width: 479px) {
-  .section { padding: 3rem 1rem !important; }
-  .process-card { padding: 1.25rem 1rem !important; border-radius: var(--r-lg) !important; }
-  .btn { padding: 0.7rem 1.25rem !important; font-size: 0.8rem !important; }
+/* ── Hero word chip (the "craft" highlighted box) ── */
+.hero-word-chip {
+  display: inline-block;
+  padding: 0.14em 0.38em;
+  border-radius: 0.4rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+[data-theme="light"] .hero-word-chip {
+  background: linear-gradient(135deg, rgba(17,17,17,0.09), rgba(17,17,17,0.07));
+  border: 1px solid rgba(17,17,17,0.20);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  color: #111;
 }
 
+/* ── Hero mini icon box (near "About Us" label) ── */
+.hero-mini-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.10);
+  flex-shrink: 0;
+}
+[data-theme="light"] .hero-mini-box {
+  background: linear-gradient(135deg, rgba(17,17,17,0.10), rgba(17,17,17,0.05));
+  border: 1px solid rgba(17,17,17,0.10);
+  color: #111;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ── Hero stats row ── */
+#hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  flex-wrap: wrap;
+}
+.hero-stat { flex-shrink: 0; }
+.hero-stat-divider {
+  width: 1px;
+  height: 2.5rem;
+  background: var(--brd);
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  #hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .hero-stat-divider { display: none; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE & TABLET — HERO + GLOBAL RESPONSIVE FIXES
+   Single clean block, mobile-first, no conflicts
+══════════════════════════════════════════════════════ */
+
+/* 0. Global overflow guard */
+html, body { overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 1. Hero container */
+#hero {
+  padding-left: clamp(1rem, 5vw, 2rem);
+  padding-right: clamp(1rem, 5vw, 2rem);
+  padding-top: clamp(5.5rem, 14vh, 9rem);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+  min-height: 100svh;
+}
+
+/* 2. Hero decoration — always clipped */
+.hcw { overflow: hidden; }
+
+/* 3. Orbiting circles — scaled for each breakpoint */
 @media (max-width: 768px) {
-  hero-h1 { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; line-height: 1.1 !important; }
+  .horbit-1 { width: 140px !important; height: 140px !important; }
+  .horbit-2 { width: 220px !important; height: 220px !important; }
+  .horbit-3 { width: 290px !important; height: 290px !important; }
+  .horbit-4 { width: 90px  !important; height: 90px  !important; }
+  .horbit-wrap { opacity: 0.5; }
+  .harc { display: none; }
+}
+@media (max-width: 480px) {
+  .horbit-wrap, .hring { display: none !important; }
+}
+
+/* 4. Hero label row */
+#hero-content > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.875rem;
+}
+
+/* 5. Hero heading — tighter on phone */
+@media (max-width: 768px) {
+  #hero-h1 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1rem !important;
+    max-width: 100% !important;
+    word-break: break-word;
+  }
+}
+
+/* 6. Hero subtitle — readable on phone */
+@media (max-width: 768px) {
+  #hero-sub {
+    font-size: 0.95rem !important;
+    max-width: 100% !important;
+    line-height: 1.7 !important;
+    margin-bottom: 1.75rem !important;
+  }
+}
+
+/* 7. Hero buttons — stack vertically on phone */
+@media (max-width: 600px) {
+  #hero-btns {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  #hero-btns .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* 8. Hero stats — grid on phone */
+@media (max-width: 600px) {
+  #hero-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+    margin-top: 2.5rem !important;
+  }
+  .hero-stat-divider { display: none !important; }
+  .stat-num { font-size: 1.75rem !important; }
+}
+
+/* 9. Section padding on phone */
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 1.25rem !important;
+  }
+  .footer {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* 10. Story visual — hide on phone (too small) */
+@media (max-width: 768px) {
   .story-visual { display: none !important; }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1.25rem !important; }
+/* 11. Process grid — single col on phone */
+@media (max-width: 600px) {
+  .process-grid { grid-template-columns: 1fr !important; }
+  .process-grid::before { display: none !important; }
+}
+
+/* 12. Footer — stack on phone */
+@media (max-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr !important; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 0.5rem; }
+}
+
+/* 13. Tablet — two-col sections stack */
+@media (max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  #our-story .two-col > div:first-child {
+    position: static !important;
+  }
+  .process-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .footer-inner { grid-template-columns: 1fr 1fr !important; }
+  .why-us-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
-     @media (max-width: 768px) {
-  .cursor,
-  .page-loader::before,
-  body::after,
-  .loader-glow,
-  .noise,
-  .dot-bg {
-    display: none !important;
-  }
-  
-  .grid-bg {
-    background-image: none !important;
-  }
-
-  .glass,
-  .glass-strong,
-  .nav-inner {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  .navbar {
-    top: 0.75rem;
-    width: calc(100% - 1rem);
-  }
-
-  .section,
-  .hero,
-  .cta,
-  .footer {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
-
-  img, video {
-    max-width: 100%;
-    height: auto;
-  }
-}
-    @media (max-width: 768px) {
-  /* Safe hero force - adjust YOUR exact class after inspect */
-  main section:first-child,
-  .hero,
-  [class*="hero"] {
-    min-height: 100dvh !important;
-    padding-top: 6rem !important;
-  }
-  
-  /* Just in case opacity issue */
-  h1, h2 {
-    opacity: 1 !important;
-  }
-}
 </style>
-   </style>
 </head>
 
 <body>
@@ -3078,22 +3118,22 @@
   <!-- ══════════════════════════════════════════
        HERO SECTION
   ══════════════════════════════════════════ -->
-  <section style="padding:2rem 2rem 2rem;position:relative;overflow:hidden;" class="grid-bg" id="hero">
+  <section style="position:relative;overflow:hidden;" class="grid-bg" id="hero">
     <div class="hcw">
       <div class="hblob"
-        style="width:600px;height:600px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(255,255,255,0.055) 0%,transparent 65%);animation-duration:13s;">
+        style="width:min(600px,90vw);height:min(600px,90vw);top:-200px;right:-150px;background:radial-gradient(circle,rgba(255,255,255,0.055) 0%,transparent 65%);animation-duration:13s;">
       </div>
       <div class="hblob"
-        style="width:400px;height:400px;bottom:-100px;left:-100px;background:radial-gradient(circle,rgba(255,255,255,0.03) 0%,transparent 65%);animation-duration:17s;animation-delay:2s;">
+        style="width:min(400px,60vw);height:min(400px,60vw);bottom:-100px;left:-100px;background:radial-gradient(circle,rgba(255,255,255,0.03) 0%,transparent 65%);animation-duration:17s;animation-delay:2s;">
       </div>
-      <div class="hring" style="width:420px;height:420px;top:-80px;right:-80px;animation-duration:28s;opacity:.1;">
+      <div class="hring" style="width:min(420px,80vw);height:min(420px,80vw);top:-80px;right:-80px;animation-duration:28s;opacity:.1;">
       </div>
       <div class="hring dash"
-        style="width:200px;height:200px;top:30%;right:8%;animation-duration:36s;animation-delay:4s;opacity:.08;"></div>
+        style="width:min(200px,40vw);height:min(200px,40vw);top:30%;right:8%;animation-duration:36s;animation-delay:4s;opacity:.08;"></div>
       <div class="hdot" style="width:5px;height:5px;top:20%;right:24%;animation-duration:5s;"></div>
       <div class="hdot" style="width:4px;height:4px;top:55%;right:14%;animation-duration:7s;animation-delay:2s;"></div>
       <div class="hdot" style="width:3px;height:3px;top:70%;left:20%;animation-duration:9s;animation-delay:1s;"></div>
-      <svg class="harc" style="width:380px;height:380px;top:-50px;right:-50px;animation-duration:38s;"
+      <svg class="harc" style="width:min(380px,70vw);height:min(380px,70vw);top:-50px;right:-50px;animation-duration:38s;"
         viewBox="0 0 380 380" fill="none">
         <circle cx="190" cy="190" r="184" stroke="white" stroke-width=".4" stroke-dasharray="12 9" opacity=".08" />
       </svg>
@@ -3112,15 +3152,15 @@
       <div id="hero-content">
         <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
           <p class="lbl gsap-fade-up" id="hero-lbl">About Us</p>
-          <div style="width:24px;height:24px;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.05));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--accent);">★</div>
+          <div class="hero-mini-box">★</div>
         </div>
         <h1 id="hero-h1"
-          style="font-size:clamp(2.8rem,7.5vw,5.5rem);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin-bottom:1.5rem;max-width:700px;">
-          Built on <span style="background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));padding:0.125em 0.25em;border-radius:4px;">craft</span>.<br><span class="tg">Driven by results.</span>
+          style="font-size:clamp(2.2rem,6vw,5rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin-bottom:1.5rem;max-width:min(700px,100%);">
+          Built on <span class="hero-word-chip">craft</span>.<br><span class="tg">Driven by results.</span>
         </h1>
         <div style="width:3rem;height:3px;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:1.75rem;border-radius:2px;"></div>
         <p id="hero-sub"
-          style="font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:2.5rem;">
+          style="font-size:clamp(0.95rem,2vw,1.1rem);color:var(--muted);max-width:min(520px,100%);line-height:1.8;margin-bottom:2.5rem;">
           A tight-knit team of <span style="color:var(--txt);font-weight:600;">designers, developers</span>, and <span style="color:var(--txt);font-weight:600;">marketing strategists</span> who believe great digital work should be both beautiful and effective.
         </p>
         <div id="hero-btns" style="display:flex;gap:1rem;flex-wrap:wrap;position:relative;">
@@ -3136,17 +3176,13 @@
       </div>
 
       <!-- Stats row -->
-      <div id="hero-stats" style="display:flex;gap:3rem;margin-top:5rem;flex-wrap:wrap;">
-      
-        <div style="width:1px;background:var(--brd);"></div>
-        <div>
+      <div id="hero-stats">
+        <div class="hero-stat">
           <div class="stat-num"><span class="counter-val" data-target="3" data-suffix="">0</span></div>
           <div class="stat-label">Core Services</div>
         </div>
-        <div style="width:1px;background:var(--brd);"></div>
-       
-        <div style="width:1px;background:var(--brd);"></div>
-        <div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
           <div class="stat-num"><span class="counter-val" data-target="2" data-suffix="">0</span></div>
           <div class="stat-label">Years Building</div>
         </div>
@@ -3426,13 +3462,13 @@
           <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;font-size:.95rem;"><strong  style="color:var(--accent);">Unlike agencies that deliver generic websites then disappear,</strong> we're always available to help — from launch through ongoing support.
             We deliver sharp design + engineering + marketing as one cohesive service, without big-agency overhead.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;">
-            <div class="card" style="padding:1.25rem;">
+            <div class="card" style="padding:1.25rem;min-height:90px;display:flex;flex-direction:column;justify-content:center;">
               <div style="font-size:1.5rem;font-weight:800;margin-bottom:.25rem;">Full-Stack</div>
               <div
                 style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">
                 Capability</div>
             </div>
-            <div class="card" style="padding:1.25rem;">
+            <div class="card" style="padding:1.25rem;min-height:90px;display:flex;flex-direction:column;justify-content:center;">
               <div style="font-size:1.5rem;font-weight:800;margin-bottom:.25rem;">3 Services</div>
               <div
                 style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">
@@ -3915,8 +3951,30 @@
     })();
 
     // ── 6. Mobile menu ──
-    document.getElementById('menuBtn').addEventListener('click', function () { document.getElementById('mobileMenu').classList.add('open'); });
-    document.getElementById('closeMenu').addEventListener('click', function () { document.getElementById('mobileMenu').classList.remove('open'); });
+    (function() {
+      var menuBtn = document.getElementById('menuBtn');
+      var closeMenu = document.getElementById('closeMenu');
+      var mobileMenu = document.getElementById('mobileMenu');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.addEventListener('click', function() {
+        mobileMenu.classList.add('open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        closeMenu.focus();
+      });
+      closeMenu.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
+      });
+      // Close on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.focus();
+        }
+      });
+    })();
 
     // ── 7. CSS-based scroll reveal (IntersectionObserver) ──
     (function () {
@@ -3949,7 +4007,7 @@
         .from('#hero-h1', { opacity: 0, y: 40, duration: 0.8, ease: 'power3.out' }, '-=0.3')
         .from('#hero-sub', { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' }, '-=0.5')
         .from('#hero-btns', { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-        .from('#hero-stats > div', { opacity: 0, y: 24, stagger: 0.1, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+        .from('#hero-stats .hero-stat', { opacity: 0, y: 24, stagger: 0.12, duration: 0.6, ease: 'power3.out' }, '-=0.3')
         .call(initCounters); // FIX: trigger counters right after stats appear
 
       // ── Counter animation helper ──
@@ -4078,24 +4136,6 @@
         });
       });
     });
-    // Mobile menu toggle
-var mmScrollY = 0;
-document.getElementById('menuBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  mmScrollY = window.scrollY;
-  document.getElementById('mobileMenu').classList.add('open');
-  document.getElementById('menuBtn').setAttribute('aria-expanded', 'true');
-  // ... focus management, body scroll lock
-});
-
-// Close menu
-document.getElementById('closeMenu').addEventListener('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
-  // ... restore scroll
-});
 
   </script>
 </body>
