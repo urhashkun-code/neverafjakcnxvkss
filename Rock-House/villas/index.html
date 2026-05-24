@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Villas | Rock House Resort Mangatta</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f9f3ea",
+                    "secondary": "#5f5e5b",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e5e2dd",
+                    "surface": "#fff8ef",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#002022",
+                    "secondary-fixed-dim": "#c9c6c2",
+                    "surface-variant": "#e8e2d9",
+                    "outline": "#737873",
+                    "on-secondary-fixed": "#1c1c19",
+                    "on-tertiary-fixed-variant": "#2a4c4f",
+                    "background": "#fff8ef",
+                    "tertiary-container": "#204346",
+                    "primary-fixed-dim": "#b4ccbc",
+                    "surface-container-high": "#ede7de",
+                    "outline-variant": "#c2c8c2",
+                    "inverse-on-surface": "#f6f0e7",
+                    "primary": "#172c21",
+                    "primary-fixed": "#d0e8d7",
+                    "surface-container-highest": "#e8e2d9",
+                    "tertiary-fixed": "#c4e9ec",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1d1b16",
+                    "on-primary-fixed-variant": "#364b3f",
+                    "surface-bright": "#fff8ef",
+                    "on-surface": "#1d1b16",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#8cafb2",
+                    "on-surface-variant": "#424844",
+                    "tertiary-fixed-dim": "#a9cdd0",
+                    "on-primary-container": "#96ae9e",
+                    "inverse-surface": "#33302a",
+                    "on-primary-fixed": "#0b1f15",
+                    "secondary-fixed": "#e5e2dd",
+                    "surface-container": "#f3ede4",
+                    "tertiary": "#062d2f",
+                    "inverse-primary": "#b4ccbc",
+                    "error": "#ba1a1a",
+                    "primary-container": "#2d4236",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#4d6356",
+                    "surface-dim": "#dfd9d0",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#656461",
+                    "on-secondary-fixed-variant": "#474743"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "32px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.21, 0.45, 0.32, 0.9);
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .interactive-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -10px rgba(23, 44, 33, 0.15);
+        }
+        /* Sticky Navigation Styles */
+        #main-header.is-sticky {
+            background-color: rgba(23, 44, 33, 0.95);
+            backdrop-filter: blur(12px);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    
+    /* ══════════════════════════════════════════
+       RESPONSIVE & ANIMATION ENHANCEMENTS
+    ══════════════════════════════════════════ */
+
+    /* Staggered reveal children */
+    .reveal-stagger > * {
+        opacity: 0; transform: translateY(28px);
+        transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal-stagger.active > *:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s}
+    .reveal-stagger.active > *:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.18s}
+    .reveal-stagger.active > *:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.31s}
+    .reveal-stagger.active > *:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.44s}
+    .reveal-stagger.active > *:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.57s}
+
+    /* Slide from left / right */
+    .reveal-left {opacity:0;transform:translateX(-40px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1);}
+    .reveal-left.active{opacity:1;transform:translateX(0);}
+    .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1);}
+    .reveal-right.active{opacity:1;transform:translateX(0);}
+
+    /* Scale in */
+    .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1);}
+    .reveal-scale.active{opacity:1;transform:scale(1);}
+
+    /* Hero Ken-Burns */
+    @keyframes heroKen{0%{transform:scale(1.05) translate(0,0)}100%{transform:scale(1.12) translate(-1%,-1%)}}
+    .hero-img{animation:heroKen 18s ease-in-out infinite alternate;}
+
+    /* Float badge */
+    @keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float-badge{animation:floatBadge 3.5s ease-in-out infinite;}
+
+    /* Pulse ring on CTA */
+    @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(255,255,255,.4)}70%{box-shadow:0 0 0 14px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+    .btn-pulse{animation:pulseRing 2.4s ease-out infinite;}
+
+    /* Image fade-in on load */
+    img{opacity:0;transition:opacity .6s ease;}
+    img.loaded{opacity:1;}
+
+    /* ── Mobile Nav Drawer ── */
+    #mobile-nav{transform:translateX(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+    #mobile-nav.open{transform:translateX(0);pointer-events:all;}
+    #nav-overlay-mob{opacity:0;pointer-events:none;transition:opacity .38s ease;}
+    #nav-overlay-mob.open{opacity:1;pointer-events:all;}
+
+    /* Hamburger */
+    .ham-line{transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center;}
+    #ham-btn.open .ham-line:nth-child(1){transform:rotate(45deg) translate(5px,6px);}
+    #ham-btn.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0);}
+    #ham-btn.open .ham-line:nth-child(3){transform:rotate(-45deg) translate(5px,-6px);}
+
+    /* Mobile nav link slide-in */
+    .mob-nav-link{opacity:0;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease,color .2s ease;}
+    #mobile-nav.open .mob-nav-link:nth-child(1){opacity:1;transform:translateX(0);transition-delay:.12s;}
+    #mobile-nav.open .mob-nav-link:nth-child(2){opacity:1;transform:translateX(0);transition-delay:.20s;}
+    #mobile-nav.open .mob-nav-link:nth-child(3){opacity:1;transform:translateX(0);transition-delay:.28s;}
+    #mobile-nav.open .mob-nav-link:nth-child(4){opacity:1;transform:translateX(0);transition-delay:.36s;}
+
+    /* ── Media Queries ── */
+    @media (max-width: 767px) {
+        /* Tighter section rhythm */
+        section[class*="py-section-gap"],
+        .py-section-gap { padding-top: 64px !important; padding-bottom: 64px !important; }
+        /* Footer columns stack */
+        footer .grid { grid-template-columns: 1fr !important; }
+        /* Hero text clamp */
+        h1 { font-size: clamp(32px, 9vw, 48px) !important; line-height: 1.2 !important; }
+        /* Table scroll on mobile */
+        .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+        /* Masonry grid becomes single col */
+        .masonry-grid { grid-template-columns: 1fr 1fr !important; }
+        .masonry-grid [class*="col-span-12"] { grid-column: span 2 !important; }
+        .masonry-grid [class*="md:col-span"] { grid-column: span 2 !important; }
+        /* Images clamp height on mobile */
+        .masonry-grid img { height: 220px !important; }
+        /* Bottom nav padding on code2 */
+        main { padding-bottom: 80px; }
+        /* Bento cards full width */
+        .grid.grid-cols-1.md\:grid-cols-3 { gap: 1.5rem !important; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .masonry-grid { grid-template-columns: repeat(6, 1fr) !important; }
+        .masonry-grid [class*="md:col-span-8"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-4"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-3"]  { grid-column: span 3 !important; }
+        .masonry-grid [class*="md:col-span-6"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-10"] { grid-column: span 6 !important; }
+    }
+
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+
+<!-- ── Mobile Nav Overlay ── -->
+<div id="nav-overlay-mob" class="fixed inset-0 bg-primary/60 backdrop-blur-sm z-[60]" onclick="closeMobNav()"></div>
+<!-- ── Mobile Nav Drawer ── -->
+<aside id="mobile-nav" class="fixed top-0 right-0 h-full w-72 bg-primary-container z-[70] flex flex-col pt-24 pb-12 px-8 shadow-2xl">
+  <nav class="flex flex-col gap-8 mt-4">
+    <a href="/Rock-House/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline">Home</a>
+    <a href="#" class="mob-nav-link text-white font-label-caps text-label-caps tracking-widest hover:text-white/70 no-underline">Villas</a>
+    <a href="/Rock-House/experiences/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline">EXPERIENCES</a>
+    <a href="/Rock-House/gallery/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline">GALLERY</a>
+  </nav>
+  <div class="mt-auto">
+    <button class="w-full bg-white text-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-surface-container-low transition-all duration-300 shadow-lg">Book Now</button>
+    <p class="text-white/50 text-xs text-center mt-6">7987714032</p>
+  </div>
+</aside>
+
+<!-- TopAppBar (Transparent over Hero, Sticky on scroll) -->
+<header class="fixed top-0 left-0 w-full z-[50] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-8 transition-all duration-500 bg-gradient-to-b from-black/40 to-transparent" id="main-header">
+<div class="font-headline-sm text-headline-sm tracking-tight text-white drop-shadow-md">Rock House Resort Mangatta</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-white/90 hover:text-white transition-all duration-300 font-label-caps text-label-caps drop-shadow-sm" href="/Rock-House/">Home</a>
+<a class="text-primary font-label-caps text-label-caps bg-white/90 px-4 py-1.5 rounded-full drop-shadow-sm" href="#">Villas</a>
+<a class="text-white/90 hover:text-white transition-all duration-300 font-label-caps text-label-caps drop-shadow-sm" href="/Rock-House/experiences/">Experiences</a>
+<a class="text-white/90 hover:text-white transition-all duration-300 font-label-caps text-label-caps drop-shadow-sm" href="/Rock-House/gallery/">Gallery</a>
+</nav>
+<button class="hidden md:block bg-white text-primary px-8 py-3 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 rounded-full shadow-lg">Book Now</button>
+  <button id="ham-btn" onclick="toggleMobNav()" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none ml-2" aria-label="Toggle menu">
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+  </button>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 scale-105 transform transition-transform duration-[10000ms] hover:scale-100">
+<img alt="Villa Interior" class="w-full h-full object-cover brightness-[0.7]" data-alt="A high-end luxury villa interior with floor-to-ceiling glass windows overlooking a tropical garden at dusk." src="/Rock-House/images/a.jpg"/>
+</div>
+<div class="relative z-10 text-center px-margin-mobile reveal-element active">
+<span class="font-label-caps text-label-caps text-surface-container-lowest tracking-[0.2em] mb-4 block">EXCLUSIVITY REIMAGINED</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface-container-lowest mb-8">Refined Sanctuaries</h1>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<a class="bg-surface text-primary px-10 py-4 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 rounded-full shadow-xl" href="#villas">Explore Collection</a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-surface-container-lowest text-4xl">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Overview Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low reveal-element active">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Choose Your Sanctuary</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-12 max-w-2xl mx-auto">
+                Whether you seek an intimate escape for two or a grand celebration with the collective, our villas are meticulously designed to blur the lines between architecture and nature. Discover your private slice of Mangatta.
+            </p>
+<div class="grid md:grid-cols-2 gap-gutter text-left">
+<div class="p-8 bg-surface-container-highest rounded-xl border border-outline-variant/30 interactive-card">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">bed</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">2-Bedroom Retreats</h3>
+<p class="text-secondary">Perfect for couples or small families seeking privacy and the soothing sounds of the surrounding flora.</p>
+</div>
+<div class="p-8 bg-surface-container-highest rounded-xl border border-outline-variant/30 interactive-card">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">groups</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">4-Bedroom Estates</h3>
+<p class="text-secondary">Expansive living areas and sweeping lawns designed for group stays and unforgettable shared memories.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Villa Sections -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop space-y-section-gap overflow-hidden" id="villas">
+<!-- Villa 1: Rock House Villa 1 -->
+<div class="grid md:grid-cols-12 gap-gutter items-center reveal-element active">
+<div class="md:col-span-7 relative group">
+<div class="aspect-[4/3] overflow-hidden rounded-xl">
+<img alt="Rock House Villa 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/Rock-House/images/r-v-1.png"/>
+</div>
+<div class="absolute -bottom-6 -right-6 md:right-10 bg-primary-container p-8 text-on-primary-container max-w-xs shadow-2xl hidden md:block">
+<h4 class="font-label-caps text-label-caps text-on-tertiary-container mb-2">SIGNATURE SUITE</h4>
+<p class="font-body-md italic">"An intimate escape where the pool meets the palms."</p>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-12">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-4 block">PRIVATE ESCAPE</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Rock House Villa 1</h2>
+<p class="text-secondary mb-8 leading-relaxed">
+                    Tucked away in the most secluded corner of the resort, Villa 1 offers a 2-bedroom sanctuary. Experience direct private pool access from your master suite and an open-air shower that brings you closer to the Mangatta breeze.
+                </p>
+<ul class="space-y-3 mb-10">
+<li class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-primary">pool</span>
+                        Direct Private Pool Access
+                    </li>
+<li class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-primary">king_bed</span>
+                        Intimate 2-Bedroom Layout
+                    </li>
+<li class="flex items-center gap-3 text-secondary">
+<span class="material-symbols-outlined text-primary">shower</span>
+                        Outdoor Rain Shower
+                    </li>
+</ul>
+<button class="border-2 border-primary text-primary px-10 py-4 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 rounded-full">View Details</button>
+</div>
+</div>
+<!-- Villa 2: Pool Villa -->
+<div class="grid md:grid-cols-12 gap-gutter items-center reveal-element active">
+<div class="md:col-span-5 order-2 md:order-1 md:pr-12">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-4 block">GRAND ESTATE</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">The Pool Villa</h2>
+<p class="text-secondary mb-8 leading-relaxed">
+                    Designed for groups and grand gatherings, this 4-bedroom masterpiece features the resort's largest private pool, an expansive manicured lawn, and a sprawling balcony sitting area for sunset cocktails.
+                </p>
+<div class="flex flex-wrap gap-2 mb-10">
+<span class="px-4 py-2 bg-tertiary/10 border border-tertiary/20 text-tertiary rounded-full font-label-caps text-[10px]">4 BEDROOMS</span>
+<span class="px-4 py-2 bg-tertiary/10 border border-tertiary/20 text-tertiary rounded-full font-label-caps text-[10px]">OLYMPIC LENGTH POOL</span>
+<span class="px-4 py-2 bg-tertiary/10 border border-tertiary/20 text-tertiary rounded-full font-label-caps text-[10px]">PRIVATE LAWN</span>
+</div>
+<button class="bg-primary text-on-primary px-10 py-4 font-label-caps text-label-caps hover:opacity-90 hover:scale-[1.02] transition-all duration-300 rounded-full">Book the Estate</button>
+</div>
+<div class="md:col-span-7 order-1 md:order-2">
+<div class="aspect-[16/9] overflow-hidden rounded-xl shadow-lg group">
+<img alt="The Pool Villa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/Rock-House/images/p-v.png"/>
+</div>
+</div>
+</div>
+<!-- Villa 3: Rock House Villa 2 -->
+<div class="grid md:grid-cols-12 gap-gutter items-center reveal-element active">
+<div class="md:col-span-6">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-xl group">
+<img alt="Rock House Villa 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/Rock-House/images/r-v-2.png"/>
+</div>
+</div>
+<div class="md:col-span-6 md:pl-16">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-4 block">COZY RETREAT</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Rock House Villa 2</h2>
+<p class="text-secondary mb-8 leading-relaxed">
+                    Our most intimate 2-bedroom offering. Villa 2 focuses on interior warmth and tactile comfort, featuring a cozy sunken lounge and a wrap-around deck that stays shaded throughout the day.
+                </p>
+<div class="space-y-4 border-l-2 border-primary-fixed-dim pl-6 py-2 interactive-card">
+<p class="font-body-md text-primary italic">"Perfect for a quiet honeymoon or a creative retreat."</p>
+<p class="text-secondary">— Guest Review, Oct 2023</p>
+</div>
+<div class="mt-10"><button class="bg-primary text-on-primary px-10 py-4 font-label-caps text-label-caps hover:opacity-90 hover:scale-[1.02] transition-all duration-300 rounded-full">Book Now</button></div>
+</div>
+</div>
+</section>
+<!-- Comparison Table Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30 reveal-element active">
+<div class="max-w-5xl mx-auto overflow-x-auto">
+<h2 class="font-headline-md text-headline-md text-primary text-center mb-12">Compare Your Options</h2>
+<table class="w-full border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="py-6 px-4 text-left font-label-caps text-label-caps text-primary">VILLA TYPE</th>
+<th class="py-6 px-4 text-center font-label-caps text-label-caps text-primary">GROUP SIZE</th>
+<th class="py-6 px-4 text-center font-label-caps text-label-caps text-primary">POOL TYPE</th>
+<th class="py-6 px-4 text-center font-label-caps text-label-caps text-primary">IDEAL OCCASION</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container transition-colors duration-300">
+<td class="py-8 px-4 font-headline-sm text-[18px] text-primary">Rock House Villa 1</td>
+<td class="py-8 px-4 text-center text-secondary">Up to 4 Guests</td>
+<td class="py-8 px-4 text-center text-secondary">Private Infinity</td>
+<td class="py-8 px-4 text-center text-secondary">Intimate Romantic Escapes</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container transition-colors duration-300">
+<td class="py-8 px-4 font-headline-sm text-[18px] text-primary">The Pool Villa</td>
+<td class="py-8 px-4 text-center text-secondary">Up to 10 Guests</td>
+<td class="py-8 px-4 text-center text-secondary">Grand Olympic Pool</td>
+<td class="py-8 px-4 text-center text-secondary">Family Reunions &amp; Parties</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container transition-colors duration-300">
+<td class="py-8 px-4 font-headline-sm text-[18px] text-primary">Rock House Villa 2</td>
+<td class="py-8 px-4 text-center text-secondary">Up to 4 Guests</td>
+<td class="py-8 px-4 text-center text-secondary">Intimate Plunge Pool</td>
+<td class="py-8 px-4 text-center text-secondary">Quiet Personal Retreats</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-primary text-on-primary text-center reveal-element active">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-headline-md text-headline-md mb-6">Experience Mangatta Luxury</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim mb-10">
+                Our concierge is ready to curate your perfect stay. Reach out today for personalized availability and bespoke villa arrangements.
+            </p>
+<div class="flex flex-col md:flex-row justify-center gap-6">
+<button class="bg-surface text-primary px-12 py-5 font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-all duration-300 active:scale-95 rounded-full">Inquire for Availability</button>
+<button class="border-2 border-surface text-surface px-12 py-5 font-label-caps text-label-caps hover:bg-surface hover:text-primary transition-all duration-300 rounded-full">Download Brochure</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-primary-container full-width grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap w-full">
+<div class="md:col-span-4 reveal">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-6">Rock House Resort Mangatta</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-sm">Farm House No. 16, Mangata. Experience the height of privacy and tropical luxury.</p>
+</div>
+<div class="md:col-span-2 reveal" style="transition-delay: 100ms;">
+<h5 class="font-label-caps text-label-caps text-primary mb-6 uppercase tracking-wider">Explore</h5>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li class=""><a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Villas</a></li>
+<li class=""><a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Sustainability</a></li>
+<li class=""><a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Inquiry</a></li>
+<li class=""><a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div class="md:col-span-2 reveal" style="transition-delay: 200ms;">
+<h5 class="font-label-caps text-label-caps text-primary mb-6 uppercase tracking-wider">Contact</h5>
+<ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<li class="">Ph: 7987714032</li>
+<li class="">reception@mangatta.com</li>
+</ul>
+</div>
+<div class="md:col-span-4 flex flex-col items-end justify-between reveal" style="transition-delay: 300ms;">
+<div class="flex gap-4">
+<div class="w-10 h-10 border border-primary/20 rounded-full flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-surface transition-all duration-300">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.563 9.877v-6.988H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.889h-2.33v6.988A10.003 10.003 0 0 0 22 12z"/></svg>
+</div>
+<div class="w-10 h-10 border border-primary/20 rounded-full flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-surface transition-all duration-300">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+</div>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-12 text-right">
+            © 2026 Rock House Resort Mangatta.
+        </div>
+</div>
+</footer>
+<script>
+    // Sticky header logic
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('is-sticky');
+            header.classList.remove('py-8', 'bg-gradient-to-b', 'from-black/40');
+        } else {
+            header.classList.remove('is-sticky');
+            header.classList.add('py-8', 'bg-gradient-to-b', 'from-black/40');
+        }
+    });
+
+    // Smooth scroll-reveal animation
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-element').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Parallax effect for hero
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const heroImg = document.querySelector('section img');
+        if (heroImg) {
+            heroImg.style.transform = `translateY(${scrolled * 0.15}px) scale(1.05)`;
+        }
+    });
+</script>
+
+<script>
+  /* Mobile nav */
+  function openMobNav(){
+    document.getElementById('mobile-nav').classList.add('open');
+    document.getElementById('nav-overlay-mob').classList.add('open');
+    document.getElementById('ham-btn').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeMobNav(){
+    document.getElementById('mobile-nav').classList.remove('open');
+    document.getElementById('nav-overlay-mob').classList.remove('open');
+    document.getElementById('ham-btn').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function toggleMobNav(){
+    const isOpen = document.getElementById('mobile-nav').classList.contains('open');
+    isOpen ? closeMobNav() : openMobNav();
+  }
+  /* Image fade-in */
+  document.querySelectorAll('img').forEach(img=>{
+    if(img.complete) img.classList.add('loaded');
+    else img.addEventListener('load',()=>img.classList.add('loaded'));
+  });
+  /* Universal reveal observer (handles all reveal class variants) */
+  const _ro = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('active','visible');
+        _ro.unobserve(e.target);
+      }
+    });
+  },{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger')
+    .forEach(el=>_ro.observe(el));
+</script>
+
+</body></html>

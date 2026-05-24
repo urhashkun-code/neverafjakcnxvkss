@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Amenities &amp; Experiences | Rock House Resort Mangatta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f9f3ea",
+                        "secondary": "#5f5e5b",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e5e2dd",
+                        "surface": "#fff8ef",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#002022",
+                        "secondary-fixed-dim": "#c9c6c2",
+                        "surface-variant": "#e8e2d9",
+                        "outline": "#737873",
+                        "on-secondary-fixed": "#1c1c19",
+                        "on-tertiary-fixed-variant": "#2a4c4f",
+                        "background": "#fff8ef",
+                        "tertiary-container": "#204346",
+                        "primary-fixed-dim": "#b4ccbc",
+                        "surface-container-high": "#ede7de",
+                        "outline-variant": "#c2c8c2",
+                        "inverse-on-surface": "#f6f0e7",
+                        "primary": "#172c21",
+                        "primary-fixed": "#d0e8d7",
+                        "surface-container-highest": "#e8e2d9",
+                        "tertiary-fixed": "#c4e9ec",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1d1b16",
+                        "on-primary-fixed-variant": "#364b3f",
+                        "surface-bright": "#fff8ef",
+                        "on-surface": "#1d1b16",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#8cafb2",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed-dim": "#a9cdd0",
+                        "on-primary-container": "#96ae9e",
+                        "inverse-surface": "#33302a",
+                        "on-primary-fixed": "#0b1f15",
+                        "secondary-fixed": "#e5e2dd",
+                        "surface-container": "#f3ede4",
+                        "tertiary": "#062d2f",
+                        "inverse-primary": "#b4ccbc",
+                        "error": "#ba1a1a",
+                        "primary-container": "#2d4236",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#4d6356",
+                        "surface-dim": "#dfd9d0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#656461",
+                        "on-secondary-fixed-variant": "#474743"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "32px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "display-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom styles for transparent header overlay */
+        header.nav-transparent {
+            background-color: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        header.nav-scrolled {
+            background-color: rgba(45, 66, 54, 0.95); /* primary-container with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    
+    /* ══════════════════════════════════════════
+       RESPONSIVE & ANIMATION ENHANCEMENTS
+    ══════════════════════════════════════════ */
+
+    /* Staggered reveal children */
+    .reveal-stagger > * {
+        opacity: 0; transform: translateY(28px);
+        transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal-stagger.active > *:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s}
+    .reveal-stagger.active > *:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.18s}
+    .reveal-stagger.active > *:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.31s}
+    .reveal-stagger.active > *:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.44s}
+    .reveal-stagger.active > *:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.57s}
+
+    /* Slide from left / right */
+    .reveal-left {opacity:0;transform:translateX(-40px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1);}
+    .reveal-left.active{opacity:1;transform:translateX(0);}
+    .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1);}
+    .reveal-right.active{opacity:1;transform:translateX(0);}
+
+    /* Scale in */
+    .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1);}
+    .reveal-scale.active{opacity:1;transform:scale(1);}
+
+    /* Hero Ken-Burns */
+    @keyframes heroKen{0%{transform:scale(1.05) translate(0,0)}100%{transform:scale(1.12) translate(-1%,-1%)}}
+    .hero-img{animation:heroKen 18s ease-in-out infinite alternate;}
+
+    /* Float badge */
+    @keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float-badge{animation:floatBadge 3.5s ease-in-out infinite;}
+
+    /* Pulse ring on CTA */
+    @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(255,255,255,.4)}70%{box-shadow:0 0 0 14px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+    .btn-pulse{animation:pulseRing 2.4s ease-out infinite;}
+
+    /* Image fade-in on load */
+    img{opacity:0;transition:opacity .6s ease;}
+    img.loaded{opacity:1;}
+
+    /* ── Mobile Nav Drawer ── */
+    #mobile-nav{transform:translateX(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);}
+    #mobile-nav.open{transform:translateX(0);}
+    #nav-overlay-mob{opacity:0;pointer-events:none;transition:opacity .38s ease;}
+    #nav-overlay-mob.open{opacity:1;pointer-events:all;}
+
+    /* Hamburger */
+    .ham-line{transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center;}
+
+    /* Mobile nav link slide-in */
+    .mob-nav-link{opacity:0;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease,color .2s ease;}
+    #mobile-nav.open .mob-nav-link:nth-child(1){opacity:1;transform:translateX(0);transition-delay:.12s;}
+    #mobile-nav.open .mob-nav-link:nth-child(2){opacity:1;transform:translateX(0);transition-delay:.20s;}
+    #mobile-nav.open .mob-nav-link:nth-child(3){opacity:1;transform:translateX(0);transition-delay:.28s;}
+    #mobile-nav.open .mob-nav-link:nth-child(4){opacity:1;transform:translateX(0);transition-delay:.36s;}
+
+    /* ── Media Queries ── */
+    @media (max-width: 767px) {
+        /* Tighter section rhythm */
+        section[class*="py-section-gap"],
+        .py-section-gap { padding-top: 64px !important; padding-bottom: 64px !important; }
+        /* Footer columns stack */
+        footer .grid { grid-template-columns: 1fr !important; }
+        /* Hero text clamp */
+        h1 { font-size: clamp(32px, 9vw, 48px) !important; line-height: 1.2 !important; }
+        /* Table scroll on mobile */
+        .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+        /* Masonry grid becomes two col on mobile */
+        .masonry-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+        .masonry-grid [class*="col-span-12"] { grid-column: span 2 !important; }
+        .masonry-grid [class*="md:col-span"] { grid-column: span 2 !important; }
+        /* Images clamp height on mobile */
+        .masonry-grid img { height: 180px !important; }
+        /* Main bottom padding */
+        main { padding-bottom: 40px; }
+        /* Bento cards full width */
+        .grid.grid-cols-1.md\:grid-cols-3 { gap: 1.5rem !important; }
+        /* Footer social icons: left-aligned on mobile */
+        footer .md\:col-span-5 .flex.gap-6 { justify-content: flex-start !important; }
+        /* Footer bottom bar stacks centered */
+        footer .flex.flex-col.md\:flex-row { align-items: center !important; text-align: center !important; }
+        /* Amenities big card image height */
+        .md\:col-span-8 img { height: 320px !important; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .masonry-grid { grid-template-columns: repeat(6, 1fr) !important; }
+        .masonry-grid [class*="md:col-span-8"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-4"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-3"]  { grid-column: span 3 !important; }
+        .masonry-grid [class*="md:col-span-6"]  { grid-column: span 6 !important; }
+        .masonry-grid [class*="md:col-span-10"] { grid-column: span 6 !important; }
+        /* Footer: 2-col on tablet */
+        footer .grid.md\:grid-cols-12 { grid-template-columns: repeat(6, 1fr) !important; }
+        footer .md\:col-span-5 { grid-column: span 6 !important; }
+        footer .md\:col-span-3 { grid-column: span 3 !important; }
+        footer .md\:col-span-4 { grid-column: span 3 !important; }
+    }
+
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- ── Mobile Nav Overlay ── -->
+<div id="nav-overlay-mob" class="fixed inset-0 bg-primary/60 backdrop-blur-sm z-[55]" onclick="closeMobNav()"></div>
+<!-- ── Mobile Nav Drawer ── -->
+<aside id="mobile-nav" class="fixed top-0 right-0 h-full w-72 bg-primary-container z-[60] flex flex-col pt-24 pb-12 px-8 shadow-2xl">
+  <button onclick="closeMobNav()" class="absolute top-5 right-5 text-white/70 hover:text-white transition-colors z-[61]">
+    <span class="material-symbols-outlined text-3xl">close</span>
+  </button>
+  <nav class="flex flex-col gap-8 mt-4">
+    <a href="/Rock-House/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline ">HOME</a>
+    <a href="/Rock-House/villas/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline">VILLAS</a>
+    <a href="#" class="mob-nav-link text-white font-label-caps text-label-caps tracking-widest hover:text-white/70 no-underline">EXPERIENCES</a>
+    <a href="/Rock-House/gallery/" class="mob-nav-link text-white/80 font-label-caps text-label-caps tracking-widest hover:text-white no-underline">GALLERY</a>
+  </nav>
+  <div class="mt-auto">
+    <button class="w-full bg-white text-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-surface-container-low transition-all duration-300 shadow-lg">Book Now</button>
+    <p class="text-white/50 text-xs text-center mt-6">7987714032</p>
+  </div>
+</aside>
+
+<!-- TopAppBar (Updated to absolute/sticky overlay) -->
+<header class="fixed top-0 left-0 right-0 z-40 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 transition-all duration-500 nav-transparent" id="main-header">
+<div class="font-label-caps text-label-caps tracking-widest text-surface drop-shadow-md uppercase" style="font-size:13px;letter-spacing:0.08em;">Rock House Resort Mangatta</div>
+<nav class="hidden md:flex gap-12">
+<a class="font-label-caps text-label-caps text-surface/90 hover:text-surface transition-all duration-300 drop-shadow-sm" href="/Rock-House/">Home</a>
+<a class="font-label-caps text-label-caps text-surface/90 hover:text-surface transition-all duration-300 drop-shadow-sm" href="/Rock-House/villas/">Villas</a>
+<a class="text-primary font-label-caps text-label-caps bg-white/90 px-4 py-1.5 rounded-full drop-shadow-sm" href="#">Experiences</a>
+<a class="font-label-caps text-label-caps text-surface/90 hover:text-surface transition-all duration-300 drop-shadow-sm" href="/Rock-House/gallery/">Gallery</a>
+</nav>
+<button class="hidden md:block bg-surface text-primary px-8 py-3 rounded-full font-label-caps text-label-caps hover:bg-primary-fixed hover:text-primary transition-all duration-300 active:scale-95 shadow-lg">Book Now</button>
+  <button id="ham-btn" onclick="openMobNav()" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none ml-2" aria-label="Open menu">
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+    <span class="ham-line block w-6 h-[2px] bg-white rounded-full"></span>
+  </button>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+<!-- Gradient overlay for text legibility -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-primary/20 to-transparent z-10"></div>
+<img alt="Resort Hero" class="absolute inset-0 w-full h-full object-cover scale-105" src="/Rock-House/images/p-s-l-2.png"/>
+<div class="relative z-20 text-center px-margin-mobile reveal active">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface mb-8 drop-shadow-2xl">More Than Just a Stay</h1>
+<p class="font-body-lg text-body-lg text-surface/90 max-w-2xl mx-auto italic">A curated collection of moments designed to awaken the senses and restore the soul.</p>
+</div>
+</section>
+<!-- Amenities Grid -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 reveal active">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-outline tracking-[0.2em] mb-4 block uppercase">Our Sanctuary</span>
+<h2 class="font-headline-md text-headline-md text-primary">Unrivaled Facilities for the Discerning Traveler</h2>
+</div>
+<p class="font-body-md text-body-md text-secondary max-w-sm">Every corner of Mangatta is crafted for comfort, privacy, and effortless luxury.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Feature Big Card -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-[32px] reveal shadow-md hover:shadow-2xl transition-all duration-700 active">
+<img alt="Gazebo" class="w-full h-[650px] object-cover transition-transform duration-1000 group-hover:scale-110" src="/Rock-House/images/g-v.jpg"/>
+<div class="absolute bottom-10 left-10 bg-surface/95 backdrop-blur-md p-10 rounded-2xl max-w-sm shadow-xl transition-transform duration-500 group-hover:-translate-y-2">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3">Private Gazebos</h3>
+<p class="font-body-md text-body-md text-secondary">Secluded alcoves designed for quiet reflection or intimate conversations amidst nature.</p>
+</div>
+</div>
+<!-- Bento List Column -->
+<div class="md:col-span-4 flex flex-col gap-6 reveal active">
+<div class="bg-surface-container-low p-12 rounded-[32px] h-full flex flex-col justify-center border border-outline-variant/30 hover:border-primary/20 transition-all duration-500 hover:shadow-lg">
+<div class="flex items-center gap-6 mb-8 text-primary group cursor-default">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300 group-hover:scale-110">pool</span>
+<span class="font-headline-sm text-headline-sm">Private Pool</span>
+</div>
+<div class="flex items-center gap-6 mb-8 text-primary group cursor-default">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300 group-hover:scale-110">skillet</span>
+<span class="font-headline-sm text-headline-sm">Kitchenette</span>
+</div>
+<div class="flex items-center gap-6 mb-8 text-primary group cursor-default">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300 group-hover:scale-110">deck</span>
+<span class="font-headline-sm text-headline-sm">Outdoor Sports</span>
+</div>
+<div class="flex items-center gap-6 mb-8 text-primary group cursor-default">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300 group-hover:scale-110">sports_tennis</span>
+<span class="font-headline-sm text-headline-sm">Indoor Games</span>
+</div>
+<div class="flex items-center gap-6 text-primary group cursor-default">
+<span class="material-symbols-outlined text-4xl transition-transform duration-300 group-hover:scale-110">fireplace</span>
+<span class="font-headline-sm text-headline-sm">Gazebos</span>
+</div>
+</div>
+</div>
+<!-- Smaller Amenities Grid -->
+<div class="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 reveal active">
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-high rounded-2xl hover:bg-primary-fixed hover:shadow-md transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 transition-transform duration-300 group-hover:scale-125">wifi</span>
+<span class="font-label-caps text-label-caps text-primary">High-Speed Wi-Fi</span>
+</div>
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-high rounded-2xl hover:bg-primary-fixed hover:shadow-md transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 transition-transform duration-300 group-hover:scale-125">local_parking</span>
+<span class="font-label-caps text-label-caps text-primary">Secure Parking</span>
+</div>
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-high rounded-2xl hover:bg-primary-fixed hover:shadow-md transition-all duration-300 group"><span class="material-symbols-outlined text-primary text-3xl mb-4 transition-transform duration-300 group-hover:scale-125">yard</span><span class="font-label-caps text-label-caps text-primary">Lawn</span></div>
+<div class="flex flex-col items-center text-center p-8 bg-surface-container-high rounded-2xl hover:bg-primary-fixed hover:shadow-md transition-all duration-300 group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 transition-transform duration-300 group-hover:scale-125">ac_unit</span>
+<span class="font-label-caps text-label-caps text-primary">Air Conditioning</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Experiences Section -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="relative reveal active">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl"></div>
+<img alt="Resort Grounds" class="w-full h-[750px] object-cover rounded-[40px] shadow-2xl relative z-10 transition-transform duration-1000 hover:scale-[1.02]" src="/Rock-House/images/g.jpg"/>
+<div class="absolute -bottom-10 -right-10 bg-tertiary text-on-tertiary p-12 rounded-[32px] hidden lg:block max-w-[320px] z-20 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-primary">
+<p class="font-headline-sm text-headline-sm mb-4">A Sanctuary Defined</p>
+<p class="font-body-md text-body-md opacity-80 italic">Experience the harmony of modern architecture and tropical spirit.</p>
+</div>
+</div>
+<div class="space-y-16 reveal active">
+<div>
+<span class="font-label-caps text-label-caps text-outline tracking-[0.2em] mb-4 block">Curated Experiences</span>
+<h2 class="font-display-lg-mobile md:font-display-lg text-primary mb-10 leading-tight">Make Memories That Last</h2>
+<p class="font-body-lg text-body-lg text-secondary">From milestone celebrations to quiet romantic gestures, we orchestrate moments that transcend the ordinary. Every detail is handled with precision and grace.</p>
+</div>
+<div class="space-y-10">
+<div class="flex gap-8 items-start group cursor-default">
+<div class="w-14 h-14 bg-primary-fixed flex items-center justify-center rounded-full flex-shrink-0 group-hover:bg-primary transition-all duration-300 shadow-sm group-hover:shadow-lg">
+<span class="material-symbols-outlined text-primary group-hover:text-surface transition-colors duration-300">cake</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-3 transition-colors duration-300 group-hover:text-tertiary">Bespoke Celebrations</h4>
+<p class="font-body-md text-body-md text-secondary">Themed birthday décor, anniversary setups, and private milestone dinners under the stars.</p>
+</div>
+</div>
+<div class="flex gap-8 items-start group cursor-default">
+<div class="w-14 h-14 bg-primary-fixed flex items-center justify-center rounded-full flex-shrink-0 group-hover:bg-primary transition-all duration-300 shadow-sm group-hover:shadow-lg">
+<span class="material-symbols-outlined text-primary group-hover:text-surface transition-colors duration-300">family_restroom</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-3 transition-colors duration-300 group-hover:text-tertiary">Family Getaways</h4>
+<p class="font-body-md text-body-md text-secondary">Crafted itineraries for multi-generational families to reconnect in a safe, private paradise.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dining Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-20 reveal active">
+<h2 class="font-display-lg-mobile md:font-display-lg text-primary mb-6">Culinary Excellence</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto italic">Savor the richness of local flavors prepared with modern finesse.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="group cursor-pointer reveal active">
+<div class="overflow-hidden rounded-3xl mb-8 aspect-[3/4] shadow-md group-hover:shadow-2xl transition-all duration-700">
+<img alt="Pure Veg Dining" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="/Rock-House/images/p-s-l.jpg"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3 transition-colors duration-300 group-hover:text-tertiary">Pure Veg Gastronomy</h3>
+<p class="font-body-md text-body-md text-secondary">A dedicated menu celebrating the vibrancy of earth-to-table vegetarian cuisine.</p>
+</div>
+<div class="group cursor-pointer reveal active" style="transition-delay: 150ms;">
+<div class="overflow-hidden rounded-3xl mb-8 aspect-[3/4] shadow-md group-hover:shadow-2xl transition-all duration-700">
+<img alt="Poolside Barbeque" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="/Rock-House/images/p-s.jpg"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3 transition-colors duration-300 group-hover:text-tertiary">Poolside Barbeque</h3>
+<p class="font-body-md text-body-md text-secondary">Live grilling under the twilight sky, an interactive dining experience by the water.</p>
+</div>
+<div class="group cursor-pointer reveal active" style="transition-delay: 300ms;">
+<div class="overflow-hidden rounded-3xl mb-8 aspect-[3/4] shadow-md group-hover:shadow-2xl transition-all duration-700">
+<img alt="Indoor Outdoor Dining" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="/Rock-House/images/l-d.jpg"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-3 transition-colors duration-300 group-hover:text-tertiary">Flexible Dining</h3>
+<p class="font-body-md text-body-md text-secondary">Choose between our elegant indoor lounge or the breezy terrace for every meal.</p>
+</div>
+</div>
+</section>
+<!-- The Promise (Bento Grid) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-high rounded-t-[80px]">
+<div class="mb-20 reveal active">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">The Mangatta Promise</h2>
+<p class="font-body-lg text-body-lg text-secondary">Why our sanctuary is the chosen escape for those who seek the best.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">visibility_off</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Absolute Privacy</h4>
+<p class="font-body-md text-body-md text-secondary">Gated, secluded villas ensure your moments remain entirely your own.</p>
+</div>
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">eco</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Unspoiled Nature</h4>
+<p class="font-body-md text-body-md text-secondary">Architecture that breathes with the surrounding tropical forest.</p>
+</div>
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">concierge</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Personal Concierge</h4>
+<p class="font-body-md text-body-md text-secondary">Dedicated assistance to curate every hour of your stay.</p>
+</div>
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">security</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Safe Haven</h4>
+<p class="font-body-md text-body-md text-secondary">24/7 security and health protocols for peace of mind.</p>
+</div>
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">history_edu</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Bespoke Itineraries</h4>
+<p class="font-body-md text-body-md text-secondary">No two stays are alike. We tailor every experience to your preference.</p>
+</div>
+<div class="bg-surface p-12 rounded-[40px] shadow-sm flex flex-col gap-6 reveal hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group active">
+<span class="material-symbols-outlined text-tertiary text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">location_on</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Prime Seclusion</h4>
+<p class="font-body-md text-body-md text-secondary">Far enough to find silence, close enough to be accessible.</p>
+</div>
+</div>
+</section>
+<!-- Booking CTA -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-primary relative overflow-hidden">
+<div class="absolute inset-0 opacity-15">
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-fixed rounded-full blur-[120px]"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tertiary-fixed rounded-full blur-[100px]"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl mx-auto reveal active">
+<h2 class="font-display-lg-mobile md:font-display-lg text-surface mb-10 leading-tight">Your Journey Into Tranquility Begins Here</h2>
+<p class="font-body-lg text-body-lg text-surface/80 mb-14">Limited villa availability for the upcoming season. Reserve your sanctuary today.</p>
+<div class="flex flex-col md:flex-row gap-8 justify-center">
+<button class="bg-surface text-primary px-14 py-5 rounded-full font-label-caps text-label-caps hover:bg-primary-fixed transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95">Inquire Now</button>
+<button class="border border-surface text-surface px-14 py-5 rounded-full font-label-caps text-label-caps hover:bg-surface/10 transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95">View Gallery</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/30 px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-gutter">
+<div class="md:col-span-5 reveal active">
+<div class="font-headline-md text-headline-md text-primary mb-8">Rock House Resort Mangatta</div>
+<p class="font-body-md text-body-md text-secondary mb-10 max-w-md">Farm House No. 16, Mangata. Experience the height of privacy and tropical luxury in our curated sanctuary.</p>
+<div class="flex gap-6">
+<a class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-surface transition-all duration-300 shadow-sm" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.563 9.877v-6.988H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.889h-2.33v6.988A10.003 10.003 0 0 0 22 12z"/></svg></a>
+<a class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-surface transition-all duration-300 shadow-sm" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+</div>
+</div>
+<div class="md:col-span-3 reveal active" style="transition-delay: 100ms;">
+<h5 class="font-label-caps text-label-caps text-primary mb-8 uppercase tracking-widest">Navigation</h5>
+<ul class="space-y-5 font-body-md text-body-md text-secondary">
+<li class=""><a class="hover:text-primary transition-colors" href="#">The Villas</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Curated Experiences</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Make an Inquiry</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 reveal active" style="transition-delay: 200ms;">
+<h5 class="font-label-caps text-label-caps text-primary mb-8 uppercase tracking-widest">Connect With Us</h5>
+<div class="space-y-6">
+<div class="flex items-center gap-4 text-secondary group">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="font-body-md">Ph: 7987714032</span>
+</div>
+<div class="flex items-center gap-4 text-secondary group">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-body-md">reception@mangatta.com</span>
+</div>
+<div class="flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-body-md">Farm House No. 16, Mangata</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-10 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-md text-secondary text-sm">© 2026 Rock House Resort Mangatta. All Rights Reserved.</p>
+<div class="flex gap-8 font-label-caps text-label-caps text-secondary text-[10px] tracking-wider uppercase">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+    // Parallax and Header behavior
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroImg = document.querySelector('section img');
+        if (heroImg) {
+            heroImg.style.transform = `translateY(${scrolled * 0.1}px) scale(1.05)`;
+        }
+
+        const header = document.getElementById('main-header');
+        if (scrolled > 50) {
+            header.classList.remove('nav-transparent', 'py-6');
+            header.classList.add('nav-scrolled', 'py-4');
+        } else {
+            header.classList.add('nav-transparent', 'py-6');
+            header.classList.remove('nav-scrolled', 'py-4');
+        }
+    });
+
+    // Intersection Observer for Reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+<script>
+  /* Mobile nav */
+  function openMobNav(){
+    document.getElementById('mobile-nav').classList.add('open');
+    document.getElementById('nav-overlay-mob').classList.add('open');
+    document.getElementById('ham-btn').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeMobNav(){
+    document.getElementById('mobile-nav').classList.remove('open');
+    document.getElementById('nav-overlay-mob').classList.remove('open');
+    document.getElementById('ham-btn').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  /* Image fade-in */
+  document.querySelectorAll('img').forEach(img=>{
+    if(img.complete) img.classList.add('loaded');
+    else img.addEventListener('load',()=>img.classList.add('loaded'));
+  });
+  /* Universal reveal observer (handles all reveal class variants) */
+  const _ro = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('active','visible');
+        _ro.unobserve(e.target);
+      }
+    });
+  },{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger')
+    .forEach(el=>_ro.observe(el));
+</script>
+
+</body></html>
