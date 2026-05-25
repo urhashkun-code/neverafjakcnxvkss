@@ -2,6 +2,15 @@
 <html lang="en-IN" data-theme="dark">
 
 <head>
+  <!-- ── Theme init: must run before CSS renders to prevent flash ── -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('hs-theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    })();
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
