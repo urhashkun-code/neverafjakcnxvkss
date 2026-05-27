@@ -1,7 +1,9 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-IN" data-theme="dark">
 
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- ── Theme init: must run before CSS renders to prevent flash ── -->
   <script>
     (function () {
@@ -11,13 +13,10 @@
       }
     })();
   </script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!-- ── Primary SEO ── -->
   <title>HasherSync — Top Web Development &amp; Influencer Marketing Agency in India | Best Website Development Agency</title>
-  <meta name="description"
-    content="HasherSync is one of India's top web design, web development &amp; influencer marketing agencies. We build fast, SEO-optimised websites for doctors, clinics, hotels, resorts, and businesses — and run creator campaigns that grow your brand." />
+  <meta name="description" content="HasherSync: top web design, web development and influencer marketing agency in India. Fast, SEO-optimised websites for doctors, hotels, resorts and businesses." />
   <meta name="keywords"
     content="HasherSync, Hasher Sync, HashSync, Hasher Synk, HasherSynk, Haser Sync, HasherSink, hasher sync agency, hashersync.in, top web development agency India, best website development agency India, web design agency India, influencer marketing agency India, website for doctors, medical website development, clinic website design, web agency India, custom website development, SEO website design, influencer campaign management, digital marketing agency India, creator marketing, performance web design, affordable web development India, website development for healthcare, top digital agencies India, best web agency India, website development company India, HasherSync reviews, HasherSync contact, HasherSync pricing, HasherSync portfolio" />
   <meta name="author" content="Hasher Sync" />
@@ -44,7 +43,7 @@
   <meta property="og:site_name" content="Hasher Sync" />
   <meta property="og:title" content="HasherSync — Top Web Development &amp; Influencer Marketing Agency India" />
   <meta property="og:description"
-    content="HasherSync builds fast, purposeful websites for doctors, clinics, and businesses — and runs influencer campaigns that grow your reach. India's results-driven web &amp; marketing agency." />
+    content="HasherSync builds fast websites for doctors, clinics, hotels and businesses in India, and runs influencer campaigns that grow your reach. India's results-driven digital agency." />
   <meta property="og:url" content="https://hashersync.in/" />
   <meta property="og:image" content="https://hashersync.in/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -58,7 +57,7 @@
   <meta name="twitter:creator" content="@hashersync" />
   <meta name="twitter:title" content="HasherSync — Top Web Development &amp; Influencer Marketing Agency India" />
   <meta name="twitter:description"
-    content="HasherSync builds fast, purposeful websites for doctors, clinics, and businesses — and runs influencer campaigns that grow your reach. India's web &amp; marketing agency." />
+    content="HasherSync builds fast websites for doctors, clinics, hotels and businesses, and runs influencer campaigns that grow your reach. India's top web agency." />
   <meta name="twitter:image" content="https://hashersync.in/og-image.jpg" />
   <meta name="twitter:image:alt" content="Hasher Sync Digital Agency" />
 
@@ -302,7 +301,7 @@
       --brd: rgba(255, 255, 255, 0.08);
       --brd-hi: rgba(255, 255, 255, 0.18);
       --txt: #f0f0f0;
-      --muted: rgba(240, 240, 240, 0.44);
+      --muted: rgba(240, 240, 240, 0.65);
       --accent: #ffffff;
       --r-sm: .625rem;
       --r-md: 1rem;
@@ -319,7 +318,7 @@
       --brd: rgba(0, 0, 0, 0.09);
       --brd-hi: rgba(0, 0, 0, 0.2);
       --txt: #111;
-      --muted: rgba(17, 17, 17, 0.5);
+      --muted: rgba(17, 17, 17, 0.70);
       --accent: #111;
     }
 
@@ -498,12 +497,12 @@
       font-weight: 700;
       letter-spacing: .28em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .35);
+      color: rgba(255, 255, 255, .60);
       animation: loader-fade 1.4s ease-in-out infinite alternate;
     }
 
     [data-theme="light"] .loader-label {
-      color: rgba(0, 0, 0, .3);
+      color: rgba(0, 0, 0, .55);
     }
 
     @keyframes loader-fade {
@@ -771,7 +770,7 @@
     }
 
     [data-theme="light"] .lbl {
-      color: rgba(17, 17, 17, .45);
+      color: rgba(17, 17, 17, .65);
     }
 
     [data-theme="light"] .lbl::before {
@@ -1334,7 +1333,9 @@
       margin-bottom: 3rem;
     }
 
-    .footer-brand {}
+    .footer-brand {
+    margin-inline-end: auto;
+    }
 
     .footer-desc {
       font-size: .875rem;
@@ -2174,7 +2175,7 @@ section.grid-bg::before {
 [data-theme="light"] .hcorner-glow { background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 65%) !important; animation: corner-glow 9s ease-in-out infinite; display: block; }
 [data-theme="light"] .hblob2 { background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 65%) !important; }
 [data-theme="light"] .hvignette { background: radial-gradient(ellipse at center, transparent 30%, rgba(99,102,241,.07) 100%); }
-    /* ── Logo theme switching ── */
+    /* ----Logo theme switching --- */
     [data-theme="dark"] .hs-logo-dark  { display: block !important; }
     [data-theme="dark"] .hs-logo-light { display: none !important; }
     [data-theme="light"] .hs-logo-dark  { display: none !important; }
@@ -2193,7 +2194,8 @@ section.grid-bg::before {
   65%  { transform: translateY(-2px) scale(1.02); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-.lbl { /* entrance handled by GSAP heroTl */ }
+.lbl { 
+  /* entrance handled by GSAP heroTl */ }
 
 /* Hero description fade-slide */
 .svc-desc.rv { transition-delay: .25s; }
