@@ -1040,7 +1040,7 @@
       margin-left: 1rem;
     }
 
-    /* ── Hamburger ── */
+   /* ── Hamburger ── */
     .hamburger {
       display: none;
       background: none;
@@ -1061,7 +1061,7 @@
       transition: .3s;
     }
 
-    .hamburger:last-child span {
+    .hamburger span:last-child {
       width: 14px;
     }
 
@@ -1138,12 +1138,14 @@
   justify-content: center;
 }
 .mm-link {
+ color:var(--muted);
   display: block;
   padding: 1rem 0;
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.mm-link:hover, .mm-link.active {
+.mm-link:hover,
+ .mm-link.active {
   color: var(--accent) !important;
 }
 
@@ -2449,6 +2451,20 @@ img[loading="lazy"],iframe[loading="lazy"]{content-visibility:auto}
       opacity: 1;
       pointer-events: all;
     }
+
+    /* ── Scroll-lock when mobile menu is open ── */
+    body.mm-open {
+      overflow: hidden;
+      /* iOS Safari: prevents rubber-band scroll bleeding through */
+      position: fixed;
+      width: 100%;
+    }
+
+    /* Block touch scrolling on the overlay itself */
+    #mm-overlay {
+      touch-action: none;
+    }
+
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -2579,21 +2595,18 @@ img[loading="lazy"],iframe[loading="lazy"]{content-visibility:auto}
           class="hs-logo hs-logo-light" alt="HasherSync"
           width="28" height="28" style="width:34px;height:34px;border-radius:6px;display:none;" /><span class="nav-brand">HASHER SYNC</span><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;" aria-hidden="true">HasherSync, Hasher Sync, HashSync</span>
       </div>
-      <button id="closeMenu" class="mm-close" aria-label="Close menu">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="2" y1="2" x2="16" y2="16"/>
-          <line x1="16" y1="2" x2="2" y2="16"/>
-        </svg>
-      </button>
+      <button id="closeMenu" class="mm-close" aria-label="Close menu">&#10005;</button>
     </div>
     <nav class="mm-nav">
-      <a href="/" style="color:var(--accent);">Home</a>
-      <a href="/About/" style="color:var(--muted);">About</a>
-      <a href="/Services/" style="color:var(--muted);">Services</a>
-      <a href="/Work/" style="color:var(--muted);">Work</a>
-      <a href="/Contact/" style="color:var(--muted);">Contact</a>
-      <a href="/Blog/" style="color:var(--muted);">Blog</a>
+      <a href="/" class="mm-link active">Home</a>
+      <a href="/About/" class="mm-link">About</a>
+      <a href="/Services/" class="mm-link">Services</a>
+      <a href="/Work/" class="mm-link">Work</a>
+      <a href="/Contact/" class="mm-link">Contact</a>
+      <a href="/Blog/" class="mm-link">Blog</a>
     </nav>
+
+  <a href="/Contact/" class="btn btn-white mm-cta">Get Started</a>
   </div>
 
 
@@ -3856,52 +3869,143 @@ Tired of websites that waste your money? We establish clear websites for busines
     })();
 
    // ── 6. Mobile menu (improved) ──
-var _mmScrollY = 0;
+(function () {
+  var mmScrollY = 0;
+  var menu     = document.getElementById('mobileMenu');
+  var overlay  = document.getElementById('mm-overlay');
+  var menuBtn  = document.getElementById('menuBtn');
+  var closeBtn = document.getElementById('closeMenu');
 
-// Open menu + lock body scroll (no wobble)
-document.getElementById('menuBtn').addEventListener('click', function (e) {
-  e.preventDefault();
-  _mmScrollY = window.scrollY;
-  document.getElementById('mobileMenu').classList.add('open');
-  document.getElementById('mm-overlay').classList.add('open');
-  document.getElementById('menuBtn').setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-  setTimeout(function(){ var f = document.querySelector('#mobileMenu .mm-close'); if(f) f.focus(); }, 50);
-});
+  /* ── helpers ── */
+  function lockScroll() {
+    mmScrollY = window.scrollY;
+    document.body.classList.add('mm-open');
+    document.body.style.top = '-' + mmScrollY + 'px';
+  }
 
-// Close menu + unlock body scroll (restore position)
-document.getElementById('closeMenu').addEventListener('click', function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('mm-overlay').classList.remove('open');
-  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
-  document.getElementById('menuBtn').focus();
-  document.body.style.overflow = '';
-});
+  function unlockScroll() {
+    document.body.classList.remove('mm-open');
+    document.body.style.top = '';
+    window.scrollTo(0, mmScrollY);
+  }
 
-// Close on nav link clicks — allow actual navigation
-document.querySelectorAll('#mobileMenu .mm-nav a').forEach(function(link) {
-  link.addEventListener('click', function (e) {
-    var href = link.getAttribute('href');
-    if (href && !href.startsWith('#')) {
-      document.getElementById('mobileMenu').classList.remove('open');
-      document.getElementById('mm-overlay').classList.remove('open');
-      document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    } else {
-      e.preventDefault();
-      document.getElementById('closeMenu').click();
+  function openMenu() {
+    lockScroll();
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () {
+      var f = menu.querySelector('.mm-close');
+      if (f) f.focus();
+    }, 50);
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.focus();
+    unlockScroll();
+  }
+
+  /* ── open ── */
+  menuBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    openMenu();
+  });
+
+  /* ── close button ── */
+  closeBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    closeMenu();
+  });
+
+  /* ── nav links ── */
+  document.querySelectorAll('#mobileMenu .mm-nav a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href');
+      if (href && !href.startsWith('#')) {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        unlockScroll();
+      } else {
+        e.preventDefault();
+        closeMenu();
+      }
+    });
+  });
+
+  /* ── keyboard Escape ── */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      closeMenu();
     }
   });
-});
 
-// ESC key close (accessibility)
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
-    document.getElementById('closeMenu').click();
-  }
-});
+  /* ── Prevent background scroll-through on iOS (touchmove on overlay) ── */
+  overlay.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+  }, { passive: false });
+
+  /* ── Swipe-right on overlay → slide menu closed ── */
+  (function () {
+    var startX = 0, startY = 0;
+
+    overlay.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    overlay.addEventListener('touchend', function (e) {
+      if (!menu.classList.contains('open')) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = Math.abs(e.changedTouches[0].clientY - startY);
+      if (dx > 50 && dy < Math.abs(dx)) {
+        closeMenu();
+      }
+    }, { passive: true });
+  })();
+
+  /* ── Swipe-right on the menu panel itself → physically drag + close ── */
+  (function () {
+    var startX = 0, startY = 0;
+    var dragging = false;
+
+    menu.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      dragging = false;
+    }, { passive: true });
+
+    menu.addEventListener('touchmove', function (e) {
+      var dx = e.touches[0].clientX - startX;
+      var dy = Math.abs(e.touches[0].clientY - startY);
+      if (!dragging && dx > 10 && dy < Math.abs(dx)) {
+        dragging = true;
+      }
+      if (dragging && dx > 0) {
+        menu.style.transition = 'none';
+        menu.style.transform  = 'translateX(' + dx + 'px)';
+      }
+    }, { passive: true });
+
+    menu.addEventListener('touchend', function (e) {
+      if (!dragging) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      menu.style.transition = '';
+      if (dx > 80) {
+        menu.style.transform = '';
+        closeMenu();
+      } else {
+        menu.style.transform = '';
+      }
+      dragging = false;
+    }, { passive: true });
+  })();
+
+})();
 
     // ── 7. CSS-based scroll reveal (IntersectionObserver — no GSAP needed) ──
     (function () {
